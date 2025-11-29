@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages (Simple)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create config.js from secret
+        run: |
+          echo "// 天氣 API 設定（自動生成）" > config.js
+          echo "const WEATHER_API_URL = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-023?Authorization=${{ secrets.WEATHER_API_KEY }}';" >> config.js
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
