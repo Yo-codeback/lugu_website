@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南投鹿谷</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>南投鹿谷 天氣資訊</h1>
+        </header>
+
+        <!-- 分頁導航 -->
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="weather">天氣資訊</button>
+            <button class="tab-btn" data-tab="forecast">天氣預報</button>
+            <button class="tab-btn" data-tab="attractions">知名景點</button>
+        </nav>
+
+        <!-- 天氣資訊分頁 -->
+        <div class="tab-content active" id="weatherTab">
+        <div class="image-section">
+            <div class="slider-container">
+                <button class="nav-btn prev-btn" id="prevBtn">‹</button>
+                <div class="image-wrapper" id="imageWrapper">
+                    <img id="currentImage" src="" alt="鹿谷風景">
+                </div>
+                <button class="nav-btn next-btn" id="nextBtn">›</button>
+            </div>
+            <div class="image-counter">
+                <span id="imageCounter">1 / 1</span>
+            </div>
+            <div class="image-credit">
+                <span>圖片由 Gemini 生成</span>
+            </div>
+        </div>
+
+        <div class="info-section" id="infoSection">
+            <div class="weather-info">
+                <h2>鹿谷天氣資訊</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">溫度：</span>
+                        <span class="value" id="temperature">25°C</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">濕度：</span>
+                        <span class="value" id="humidity">65%</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">天氣狀況：</span>
+                        <span class="value" id="weatherCondition">多雲</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">風速：</span>
+                        <span class="value" id="windSpeed">12 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="export-section">
+            <button class="export-btn" id="exportBtn">匯出圖片</button>
+            <button class="share-btn" id="shareBtn">分享</button>
+        </div>
+        </div>
+
+        <!-- 天氣預報分頁 -->
+        <div class="tab-content" id="forecastTab">
+            <div class="forecast-section">
+                <h2>未來天氣預報</h2>
+                <div id="forecastContainer" class="forecast-container">
+                    <div class="loading">載入中...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 景點分頁 -->
+        <div class="tab-content" id="attractionsTab">
+            <div class="attractions-section">
+                <h2>鹿谷知名景點</h2>
+                <div id="attractionsContainer" class="attractions-container">
+                    <div class="loading">載入中...</div>
+                </div>
+                <div class="attraction-recommend-section">
+                    <button class="recommend-btn" id="recommendBtn">推薦景點</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-text">網站維護與聯絡方式</p>
+            <p class="footer-email">
+                <a href="mailto:makerbackup0821@gmail.com">makerbackup0821@gmail.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 天氣 API 設定 -->
+    <script>
+        // 中央氣象署開放資料 API
+        const WEATHER_API_URL = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-023?Authorization=rdec-key-123-45678-011121314';
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
