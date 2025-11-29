@@ -19,3 +19,5 @@ Thumbs.db
 *.tmp
 *.temp
 
+# API
+API/
