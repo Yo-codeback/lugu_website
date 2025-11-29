@@ -33,6 +33,23 @@ jobs:
         run: |
           echo "// 天氣 API 設定（自動生成）" > config.js
           echo "const WEATHER_API_URL = 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-D0047-023?Authorization=${{ secrets.WEATHER_API_KEY }}';" >> config.js
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+
+      - name: Verify config.js was created
+        run: |
+          if [ -f config.js ]; then
+            echo "✓ config.js 已成功建立"
+            if grep -q "WEATHER_API_URL" config.js; then
+              echo "✓ config.js 包含 API URL"
+            else
+              echo "✗ config.js 缺少 API URL"
+              exit 1
+            fi
+          else
+            echo "✗ config.js 未建立"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
